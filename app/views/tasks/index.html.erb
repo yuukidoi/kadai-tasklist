@@ -1,10 +1,30 @@
 <h1>タスク一覧ページ</h1>
 
-<ul>
-    <% @tasks.each do |task| %>
+<% if logged_in? %>
+    <p>ログイン完了ユーザー:<%= current_user.name %></p>
     
-    <li><%= link_to task.id, task %> : <%= task.status %> &gt; <%= task.content %></li>
-    <% end %>
-</ul>
+    <ul>
+        <% @tasks.each do |task| %>
+        
+        <li><%= link_to 'edit', edit_task_path(task) %>::<%= task.status %> &gt; <%= task.content %></li>
+        <% end %>
+    </ul>
+
+    
+    
+    <%= link_to 'ログアウト', logout_path, method: :delete %>
+    
+<% else %>
+    <div class="center jumbotron">
+        <div class="text-center">
+            <%= link_to 'Sign up', signup_path, class: 'btn btn-lg btn-primary' %>
+        </div>
+    </div>
+<% end %>
+
+
+
+
+
 
 <%= link_to '新規タスクの投稿', new_task_path %>

@@ -2,4 +2,8 @@
 
 <%= render 'form', task: @task %>
 
-<%= link_to '一覧に戻る', tasks_path %>
+
+<Ul>
+<li><%= link_to '一覧に戻る', tasks_path %></li>
+<li><%= link_to '消去', @task, method: :delete,data:{ confirmation: 'OK?'} %></li>
+</Ul>
